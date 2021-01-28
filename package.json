@@ -1,0 +1,16 @@
+{
+  "name": "slack-spoiler",
+  "version": "1.0.0",
+  "description": "a slack app for hiding spoiler text",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Logan Edwards",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "request": "^2.75.0",
+    "sprintf-js": "^1.0.3"
+  }
+}

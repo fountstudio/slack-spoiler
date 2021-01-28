@@ -1,0 +1,35 @@
+service: slack-spoiler
+custom:
+  stage: ${opt:stage, 'dev'}
+package:
+  exclude:
+    - website/**
+    - .git
+    - README.md
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  credentials:
+    accessKeyId: ${env:AWS_ACCESS_KEY_ID}
+    secretAccessKey: ${env:AWS_SECRET_ACCESS_KEY}
+  environment:
+    CLIENT_ID: ${env:CLIENT_ID}
+    CLIENT_SECRET: ${env:CLIENT_SECRET}
+    OAUTH_TOKEN: ${env:OAUTH_TOKEN}
+    STAGE: ${self:provider.stage}
+
+functions:
+  auth:
+    handler: handler.auth
+    events:
+      - http:
+          path: auth
+          method: get
+  command:
+    handler: handler.command
+    events:
+      - http:
+          path: command
+          method: post
